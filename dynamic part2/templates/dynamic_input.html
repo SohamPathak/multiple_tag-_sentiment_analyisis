@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sentiment</title>
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+      <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet"> 
+    <!-- Bootstrap theme -->
+    <link href="{{ url_for('static', filename='css/bootstrap-theme.min.css') }}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='css/theme.css') }}" rel="stylesheet">
+      <style>
+
+body, html {
+  height: 100%;
+ background-image: url("static/bg.jpg");
+
+}
+
+    .container theme-showcase{
+  background-image: url("static/bg.jpg");
+    background-size: cover;
+    height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px;
+}
+
+.container {
+  background-image: url("static/bg.jpg");
+    background-size: cover;
+    height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px;
+}
+
+
+</style>
+
+
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+<script>
+  function add_field()
+  {
+    var total_text=document.getElementsByClassName("input_text");
+    total_text=total_text.length+1;
+    field_div = document.getElementById("field_div");
+    new_input = "<li id='input_text"+total_text+"_wrapper'>";
+    new_input += "<input type='text' class='input_text' name='input_text[]' id='input_text"+
+    total_text+"' placeholder='Enter Text'>";
+    new_input += "<input type='checkbox' name='input_checkbox' value='"+total_text+"' id='input_checkbox"+
+    total_text+"'";
+    new_input += "</li>";
+    field_div.insertAdjacentHTML('beforeend',new_input);
+  }
+  function remove_field()
+  {
+    var total_text=document.getElementsByClassName("input_text");
+    document.getElementById("input_text"+total_text.length+"_wrapper").remove();     
+  }
+</script>
+
+<div class = "container">
+  <h1>Enter the tag words</h1>
+  <form action='/results' method="post">
+    <div id="wrapper">
+      <input type="button" value="Add TextBox" class="btn btn-success" onclick="add_field();">
+      <input type="button" value="Remove TextBox" class="btn btn-danger btn_remove" onclick="remove_field();">
+      </br>
+
+
+      <ul id="field_div"  >
+
+      </ul>
+
+    </div>
+    <input type='submit' value='Submit' class="btn btn-info">
+  </form>
+
+</div>
+</body>
+</html>

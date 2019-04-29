@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Result</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+	    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet"> 
+    <!-- Bootstrap theme -->
+    <link href="{{ url_for('static', filename='css/bootstrap-theme.min.css') }}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='css/theme.css') }}" rel="stylesheet">
+	    <style>
+
+body, html {
+  height: 100%;
+  
+}
+
+
+    .container theme-showcase{
+  background-image: url("static/bg2.jpg");
+  background-size: cover;
+    height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.container {
+  background-image: url("static/bg2.jpg");
+  background-size: cover;
+    height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+</style>
+</head>
+
+<body>
+<div class="container">
+<h1>Enter the tag words</h1>
+<ul>
+{% for value in input_values %}
+    <li>{{value}}</li>
+{% endfor %}
+<hr>
+{% for value in checkbox_values %}
+    <li>{{value}}</li>
+{% endfor %}
+
+</ul>
+<div>
+<div >
+{% if analysis.sentiment >= 0.01 %}
+ <div class="well">
+<h3 style="color:green;">{{'sentiment :'}}{{analysis.sentiment}}</h3>
+<h3 style="color:blue;">{{'subjectivity :'}}{{analysis.subjectivity}}</h3>
+{% else %}
+<h3 style="color:red;">{{'sentiment :'}}{{analysis.sentiment}}</h3>
+<h3 style="color:blue;">{{'subjectivity :'}}{{analysis.subjectivity}}</h3>
+{%endif%}
+</div>
+</div>
+</div>
+</div>
+
+</body>
+</html>
